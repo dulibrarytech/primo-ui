@@ -1,0 +1,58 @@
+/* creates clickable logo along with custom.js */
+body {
+    font-size: 17px;
+}
+/* background */
+md-content, md-content.md-primoExplore-theme{
+    background-color: #E5E3E1;
+}
+/* search results */
+prm-brief-result-container .list-item-primary-content {
+    background-color: #ffffff;
+}
+.bar.alert-bar {
+    background-color: #FFFCC6;
+}
+/* sidebar title */
+.sidebar-title {
+    font-weight: bold;
+    color: #474747;
+}
+.section-content .md-chips .md-chip strong{
+    color: #7F202E;
+}
+.md-autocomplete-suggestions .suggestion-scope, .text-italic{
+    color: #474747;
+}
+prm-logo div.product-logo {
+    display:none;
+    /*height: 75px;*/
+}
+prm-logo div.product-logo-local {
+    display: flex;
+}
+prm-logo .logo-image, prm-logo img {
+    max-height: 100%;
+}
+/* menu item font-color */
+prm-topbar .md-button:not(.md-icon-button) {
+    color: #ffffff;
+}
+prm-change-lang {
+    display: none;
+}
+/*
+prm-search-bar .search-switch-buttons .md-button {
+    color: #FFFFFF;
+    background-color: #7F202E;
+}
+*/
+/*
+prm-user-area button.user-menu-button .md-button {
+    color: yellow;
+    background-color: #000066;
+}
+*/
+.user-language {
+    display: none;
+}
