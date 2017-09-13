@@ -41,6 +41,10 @@ prm-topbar .md-button:not(.md-icon-button) {
 prm-change-lang {
     display: none;
 }
+/*User name or Guest*/
+prm-user-area .user-menu-button .user-name {
+    color: #f7eda3;
+}
 /*
 prm-search-bar .search-switch-buttons .md-button {
     color: #FFFFFF;
@@ -55,4 +59,8 @@ prm-user-area button.user-menu-button .md-button {
 */
 .user-language {
     display: none;
+}
+
+.no-decoration {
+    text-decoration: none;
 }
