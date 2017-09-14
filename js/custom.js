@@ -254,8 +254,8 @@
                     }
                     return true;
                 });
-            }); //end docready
-        } //end main
+            });
+        }
 
         function showMenu() {
 
@@ -284,8 +284,8 @@
             });
 
             sideMenuWidget_load.html($content).show();
-        } //end showmenu
-    })(); //end anonymous function
+        }
+    })();
 
     function changeUserName(j) {
 
@@ -297,17 +297,18 @@
                 var isGuest = angular.element(document.querySelector('.user-name'))[0].innerHTML;
 
                 if (isGuest.indexOf('Guest') > -1) {
-                    angular.element(document.getElementsByClassName('user-name'))[0].innerHTML = 'Sign in';
                     j('.user-name').text('Sign in');
-                    clearInterval(timer);
+                    clearInterval(timer1);
+                    var timer2 = setInterval(function () {
+                        modifyUserName();
+                    }, 30000);
                 }
             }
         };
 
-        var timer = setInterval(function () {
+        var timer1 = setInterval(function () {
             modifyUserName();
         }, 50);
-
     }
 
 })();
