@@ -301,7 +301,7 @@
                     clearInterval(timer1);
                     var timer2 = setInterval(function () {
                         modifyUserName();
-                    }, 30000);
+                    }, 10000);
                 }
             }
         };
