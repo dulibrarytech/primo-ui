@@ -45,6 +45,34 @@ prm-change-lang {
 prm-user-area .user-menu-button .user-name {
     color: #f7eda3;
 }
+
+.user-language {
+    display: none;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
+
+/*sign-in box*/
+.light-on-dark-dialog md-input-container label:not(.md-no-float):not(._md-container-ignore) {
+    color: #474747;
+    font-weight: 600;
+    opacity: 1;
+}
+
+md-input-container input[type="password"], md-input-container input[type=text] {
+    background-color: rgb(250, 255, 189);
+}
+
+md-dialog.light-on-dark-dialog md-input-container .md-input, md-dialog.light-on-dark-dialog md-input-container.md-input-focused .md-input, md-dialog.light-on-dark-dialog md-input-container:not(.md-input-invalid).md-input-focused .md-input, md-dialog.light-on-dark-dialog md-input-container:not(.md-input-invalid).md-input-focused input, md-dialog.light-on-dark-dialog md-input-container:not(.md-input-invalid).md-input-focused label, md-dialog.light-on-dark-dialog md-input-container.md-input-focused input, md-dialog.light-on-dark-dialog md-input-container.md-input-focused label, md-dialog.light-on-dark-dialog md-input-container.md-input-has-value .md-input, md-dialog.light-on-dark-dialog md-input-container.md-input-has-value input, md-dialog.light-on-dark-dialog md-input-container.md-input-has-value label, md-dialog.light-on-dark-dialog md-input-container input, md-dialog.light-on-dark-dialog md-input-container label {
+    color:black;
+}
+
+prm-fines-after .md-button {
+    color: #FFFFFF;
+    background-color: #7F202E;
+}
 /*
 prm-search-bar .search-switch-buttons .md-button {
     color: #FFFFFF;
@@ -57,10 +85,3 @@ prm-user-area button.user-menu-button .md-button {
     background-color: #000066;
 }
 */
-.user-language {
-    display: none;
-}
-
-.no-decoration {
-    text-decoration: none;
-}

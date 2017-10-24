@@ -23,6 +23,23 @@
 })();
 
 /*
+ Generates a pay fine(s) button
+ */
+(function () {
+
+    "use strict";
+    'use strict';
+
+    var app = angular.module('viewCustom', ['angularLoad']);
+    app.controller('prmFinesAfterController', [function () {}]);
+    app.component('prmFinesAfter', {
+        bindings: {parentCtrl: '<'},
+        controller: 'prmFinesAfterController',
+        template: '<div><a href="https://fines.library.du.edu/login" class="md-button" target="_blank">Pay Fine(s)</a></div>'
+    });
+})();
+
+/*
  Generates side menu widget
  */
 (function () {
@@ -301,14 +318,14 @@
                     clearInterval(timer1);
                     var timer2 = setInterval(function () {
                         modifyUserName();
-                    }, 10000);
+                    }, 5000);
                 }
             }
         };
 
         var timer1 = setInterval(function () {
             modifyUserName();
-        }, 50);
+        }, 40);
     }
 
 })();
