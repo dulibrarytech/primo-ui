@@ -5,6 +5,9 @@
 
     var app = angular.module('viewCustom', ['angularLoad']);
 
+    /*
+     Generates a clickable logo
+     */
     app.controller('prmLogoAfterController', [function () {
         var vm = this;
         vm.getIconLink = getIconLink;
@@ -13,9 +16,6 @@
         }
     }]);
 
-    /*
-     Generates a clickable logo
-     */
     app.component('prmLogoAfter', {
         bindings: {parentCtrl: '<'},
         controller: 'prmLogoAfterController',
@@ -29,38 +29,29 @@
         template: '<div><a href="https://fines.library.du.edu/login" class="md-button" target="_blank">Pay Fine(s)</a></div>'
     });
 
-})();
-
-/*
- Generates try in prospector link
- */
-
-/*
-(function () {
-
-    "use strict";
-    'use strict';
-
-    var app = angular.module('viewCustom', ['angularLoad']);
-    app.controller('prmNoSearchResultAfterController', [function () {
+    /*
+     Generates prospector link
+     */
+    app.controller('prmNoSearchResultAfter', [function () {
         var vm = this;
-        vm.appendProspectorLink = appendProspectorLink;
+        var searchTerm = vm.parentCtrl.term;
+
         function appendProspectorLink() {
-            // return vm.parentCtrl.iconLink;
-            return '<p>prospector</p>';
+
+            angular.element(document.querySelector('md-card-content ul')).append(
+                '<li>Try your search in <a href="http://encore.coalliance.org/iii/encore/search/C__S' + encodeURIComponent(searchTerm) + '__Orightresult__U?lang=eng&suite=def" target="_blank">Prospector</a></li>'
+            );
         }
+
+        appendProspectorLink();
     }]);
 
-
-    app.component('test', {
-        bindings: {parentCtrl: '<'},
-        controller: 'prmNoSearchResultAfter',
-        template: '<ul><li>Try your search in <a href="#" class="md-button" target="_blank">Prospector</a>{{}}</li></ul>'
+    app.component('prmNoSearchResultAfter', {
+       bindings: {parentCtrl: '<'},
+       controller: 'prmNoSearchResultAfter'
     });
 
-
 })();
-*/
 
 /*
  Generates side menu widget
@@ -282,7 +273,6 @@
                 });
 
                 sideMenuWidget_button.on('click', function (e) {
-                    // window.clearTimeout(chat_timer);
                     if (sideMenuWidget_div.hasClass('open')) {
                         showMenu();
                     } else {
