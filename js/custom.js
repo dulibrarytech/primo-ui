@@ -1,12 +1,10 @@
-/*
- Generates a clickable logo
- */
 (function () {
 
     "use strict";
     'use strict';
 
     var app = angular.module('viewCustom', ['angularLoad']);
+
     app.controller('prmLogoAfterController', [function () {
         var vm = this;
         vm.getIconLink = getIconLink;
@@ -15,29 +13,54 @@
         }
     }]);
 
+    /*
+     Generates a clickable logo
+     */
     app.component('prmLogoAfter', {
         bindings: {parentCtrl: '<'},
         controller: 'prmLogoAfterController',
         template: '<div class="product-logo product-logo-local" layout="row" id="banner" tabindex="0"  role="banner">' + '<a href="http://library.du.edu/"><img class="logo-image" alt="{{::(&apos;nui.header.LogoAlt&apos; | translate)}}" ng-src="{{$ctrl.getIconLink()}}"/></a></div>'
     });
+
+    /*
+     Generates a pay fine(s) button
+     */
+    app.component('prmFinesAfter', {
+        template: '<div><a href="https://fines.library.du.edu/login" class="md-button" target="_blank">Pay Fine(s)</a></div>'
+    });
+
 })();
 
 /*
- Generates a pay fine(s) button
+ Generates try in prospector link
  */
+
+/*
 (function () {
 
     "use strict";
     'use strict';
 
     var app = angular.module('viewCustom', ['angularLoad']);
-    app.controller('prmFinesAfterController', [function () {}]);
-    app.component('prmFinesAfter', {
+    app.controller('prmNoSearchResultAfterController', [function () {
+        var vm = this;
+        vm.appendProspectorLink = appendProspectorLink;
+        function appendProspectorLink() {
+            // return vm.parentCtrl.iconLink;
+            return '<p>prospector</p>';
+        }
+    }]);
+
+
+    app.component('test', {
         bindings: {parentCtrl: '<'},
-        controller: 'prmFinesAfterController',
-        template: '<div><a href="https://fines.library.du.edu/login" class="md-button" target="_blank">Pay Fine(s)</a></div>'
+        controller: 'prmNoSearchResultAfter',
+        template: '<ul><li>Try your search in <a href="#" class="md-button" target="_blank">Prospector</a>{{}}</li></ul>'
     });
+
+
 })();
+*/
 
 /*
  Generates side menu widget
