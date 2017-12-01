@@ -73,6 +73,18 @@ prm-fines-after .md-button {
     color: #FFFFFF;
     background-color: #7F202E;
 }
+
+/* Browzine styles */
+.browzine-icon  {
+    margin-right:2px;
+}
+
+.browzine-external-link {
+    width:15px;
+    height:15px;
+    min-width:15px;
+    min-height:15px;
+}
 /*
 prm-search-bar .search-switch-buttons .md-button {
     color: #FFFFFF;
