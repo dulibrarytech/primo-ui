@@ -122,6 +122,14 @@
         controller: 'prmSearchResultThumbnailContainerAfterController',
     });
     // End BrowZine - Primo Integration
+
+    /*
+    app.component('prmSearchBarAfter', {
+        controller: 'prmSearchBarAfterController',
+        template: '<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">'
+    });
+    */
+
 })();
 
 /*
@@ -362,17 +370,18 @@
 
             sideMenuWidget_div.css({'width': sideMenuWidget_options.width, 'height': sideMenuWidget_options.height});
 
-            var menuContent = '<div style="margin-left: 35px; padding: 25px">'; // container
+            var menuContent = '<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">';
+            menuContent += '<div style="margin-left: 35px; padding: 25px">';
             menuContent += '<h2><strong>Try your search in</strong></h2>';
-            menuContent += '<p><div><a href="http://encore.coalliance.org/iii/encore/?lang=eng" target="_blank">Prospector</a></div></p>';
-            menuContent += '<p><div><a href="http://du.idm.oclc.org/login?url=https://yewno.com/" target="_blank">Yewno</a></div></p>';
-            menuContent += '<p><div><a href="http://digital.library.du.edu/blacklight-du" target="_blank">DU Special Collections</a></div></p>';
-            menuContent += '<p><div><a href="http://digitalcommons.du.edu/" target="_blank">Digital Commons @ DU</a></div></p>';
+            menuContent += '<p><i class="fa fa-book" aria-hidden="true"></i> <a href="http://encore.coalliance.org/iii/encore/?lang=eng" target="_blank">Prospector</a></p>';
+            menuContent += '<p><i class="fa fa-wpexplorer" aria-hidden="true"></i> <a href="http://du.idm.oclc.org/login?url=https://yewno.com/" target="_blank">Yewno</a></p>';
+            menuContent += '<p><i class="fa fa-archive" aria-hidden="true"></i> <a href="http://digital.library.du.edu/blacklight-du" target="_blank">DU Special Collections</a></p>';
+            menuContent += '<p><i class="fa fa-university" aria-hidden="true"></i> <a href="http://digitalcommons.du.edu/" target="_blank">Digital Commons @ DU</a></p>';
             menuContent += '<br>';
             menuContent += '<h2><strong>Need Help?</strong></h2>';
-            menuContent += '<p><div><a href="http://libraryhelp.du.edu/" target="_blank">Ask us!</a></div></p>';
-            menuContent += '<p>Research Center 303-871-2905</p>';
-            menuContent += '<p>Lending Desk 303-871-3707</p>';
+            menuContent += '<p><i class="fa fa-question-circle" aria-hidden="true"></i> <a href="http://libraryhelp.du.edu/" target="_blank">Ask us!</a></p>';
+            menuContent += '<p><i class="fa fa-phone" aria-hidden="true"></i> Research Center 303-871-2905</p>';
+            menuContent += '<p><i class="fa fa-phone" aria-hidden="true"></i> Lending Desk 303-871-3707</p>';
             menuContent += '</div>';
             menuContent += '<div style="margin-left: 2px">';
             menuContent += '</div>';
