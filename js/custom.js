@@ -375,7 +375,7 @@
             menuContent += '<h2><strong>Try your search in</strong></h2>';
             menuContent += '<p><i class="fa fa-book" aria-hidden="true"></i> <a href="http://encore.coalliance.org/iii/encore/?lang=eng" target="_blank">Prospector</a></p>';
             menuContent += '<p><i class="fa fa-wpexplorer" aria-hidden="true"></i> <a href="http://du.idm.oclc.org/login?url=https://yewno.com/" target="_blank">Yewno</a></p>';
-            menuContent += '<p><i class="fa fa-archive" aria-hidden="true"></i> <a href="http://digital.library.du.edu/blacklight-du" target="_blank">DU Special Collections</a></p>';
+            menuContent += '<p><i class="fa fa-archive" aria-hidden="true"></i> <a href="https://duarchives.coalliance.org" target="_blank">DU Special Collections</a></p>';
             menuContent += '<p><i class="fa fa-university" aria-hidden="true"></i> <a href="http://digitalcommons.du.edu/" target="_blank">Digital Commons @ DU</a></p>';
             menuContent += '<br>';
             menuContent += '<h2><strong>Need Help?</strong></h2>';

@@ -656,9 +656,7 @@ prm-logo .logo-image, prm-logo img {
 prm-topbar .md-button:not(.md-icon-button) {
     color: #ffffff;
 }
-prm-change-lang {
-    display: none;
-}
+
 /*User name or Guest*/
 prm-user-area .user-menu-button .user-name {
     color: #f7eda3;
