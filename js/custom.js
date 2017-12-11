@@ -123,13 +123,6 @@
     });
     // End BrowZine - Primo Integration
 
-    /*
-    app.component('prmSearchBarAfter', {
-        controller: 'prmSearchBarAfterController',
-        template: '<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">'
-    });
-    */
-
 })();
 
 /*

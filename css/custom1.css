@@ -706,7 +706,15 @@ prm-fines-after .md-button {
     font-size: 14px;
 }
 
-/*Main menu overlay screen*/
+.section-content {
+    width: 450px;
+}
+
+.primo-scrollbar {
+    width: 450px;
+}
+
+    /*Main menu overlay screen*/
 md-dialog.light-on-dark-dialog {
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid white;
