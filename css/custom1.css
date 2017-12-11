@@ -620,23 +620,23 @@ md-list.prm-list.prm-linkable-list-items md-list-item > .md-button > .button-con
 body {
     font-size: 17px;
 }
-/* background */
-md-content, md-content.md-primoExplore-theme{
-    background-color: #E5E3E1;
-}
+
 /* search results */
 prm-brief-result-container .list-item-primary-content {
     background-color: #ffffff;
 }
 .bar.alert-bar {
     background-color: #FFFCC6;
+    height: 40px !important;
+    min-height: 40px !important;
 }
+
 /* sidebar title */
 .sidebar-title {
     font-weight: bold;
     color: #474747;
 }
-.section-content .md-chips .md-chip strong{
+.section-content .md-chips .md-chip strong {
     color: #7F202E;
 }
 .md-autocomplete-suggestions .suggestion-scope, .text-italic{
@@ -701,15 +701,27 @@ prm-fines-after .md-button {
     min-width:15px;
     min-height:15px;
 }
-/*
-prm-search-bar .search-switch-buttons .md-button {
-    color: #FFFFFF;
-    background-color: #7F202E;
+
+#facets {
+    font-size: 14px;
+}
+
+/*Main menu overlay screen*/
+md-dialog.light-on-dark-dialog {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid white;
+    border-radius: 3px;
+    color: white;
+}
+
+/*Hide the redundant main menu links code text*/
+prm-main-menu[menu-type=full] md-card-title md-card-title-text:only-child .md-subhead {
+    display: none;
+}
+
+/* background
+md-content, md-content.md-primoExplore-theme{
+    background-color: #E5E3E1;
 }
 */
-/*
-prm-user-area button.user-menu-button .md-button {
-    color: yellow;
-    background-color: #000066;
-}
-*/
+

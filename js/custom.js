@@ -90,7 +90,7 @@
     app.component('prmSearchResultAvailabilityLineAfter', {
         bindings: { parentCtrl: '<' },
         controller: 'prmSearchResultAvailabilityLineAfterController',
-        template: '<div ng-if="article.data.browzineWebLink"><a href="{{ article.data.browzineWebLink }}" target="_blank" title="Via Browzine"><img src="custom/01BRC_SOC/img/browzine.png" class="browzine-icon"> View Issue Contents <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" role="img" class="browzine-external-link"><svg id="open-in-new_cache29" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"></svg></md-icon></a></div><div ng-if="journal.data[0].browzineWebLink"><a href="{{ journal.data[0].browzineWebLink }}" target="_blank" title="Via Browzine"><img src="custom/01BRC_SOC/img/browzine.png" class="browzine-icon"> View Journal Contents <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" role="img" class="browzine-external-link"><svg id="open-in-new_cache29" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"></svg></md-icon></a></div>'
+        template: '<div ng-if="article.data.browzineWebLink"><a href="{{ article.data.browzineWebLink }}" target="_blank" title="Via Browzine"><img src="custom/01UODE_MAIN/img/browzine.png" class="browzine-icon"> View Issue Contents in Browzine <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" role="img" class="browzine-external-link"><svg id="open-in-new_cache29" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"></svg></md-icon></a></div><div ng-if="journal.data[0].browzineWebLink"><a href="{{ journal.data[0].browzineWebLink }}" target="_blank" title="Via Browzine"><img src="custom/01UODE_MAIN/img/browzine.png" class="browzine-icon"> View Journal Contents in Browzine <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" role="img" class="browzine-external-link"><svg id="open-in-new_cache29" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"></svg></md-icon></a></div>'
     });
 
     app.controller('prmSearchResultThumbnailContainerAfterController', function($scope, $http, nodeserver) {
@@ -151,7 +151,7 @@
             "slidebutton_url": "",
             "slidebutton_text": "Find More", // Side menu widget tab label
             "slidebutton_position": "l",
-            "slidebutton_bcolor": "#8B6F4B",
+            "slidebutton_bcolor": "#58C4E6", //"#8B6F4B",
             "slidebutton_color": "#ffffff",
             "slidebutton_width": "20",
             "slidebutton_height": "125",
@@ -258,7 +258,7 @@
                             imageHeight: null,
                             imageWidth: null,
                             onLoadSlideOut: !1,
-                            buttonBGcolor: null
+                            buttonBGcolor: null // '#58C4E6' // null
                         }, b || {});
                         c.tabHandle = a(c.tabHandle), c.content_div = a(c.content_div);
                         var d = this;
