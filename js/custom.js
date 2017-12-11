@@ -19,7 +19,7 @@
     app.component('prmLogoAfter', {
         bindings: {parentCtrl: '<'},
         controller: 'prmLogoAfterController',
-        template: '<div class="product-logo product-logo-local" layout="row" id="banner" tabindex="0"  role="banner">' + '<a href="http://library.du.edu/"><img class="logo-image" alt="{{::(&apos;nui.header.LogoAlt&apos; | translate)}}" ng-src="{{$ctrl.getIconLink()}}"/></a></div>'
+        template: '<div class="product-logo product-logo-local" layout="row" id="banner" tabindex="0"  role="banner">' + '<a href="/primo-explore/search?vid=01UODE_MAIN&lang=en_US&sortby=rank"><img class="logo-image" alt="{{::(&apos;nui.header.LogoAlt&apos; | translate)}}" ng-src="{{$ctrl.getIconLink()}}"/></a></div>'
     });
 
     /*
