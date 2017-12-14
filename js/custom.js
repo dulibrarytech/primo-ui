@@ -149,10 +149,10 @@
             "slidebutton_width": "20",
             "slidebutton_height": "125",
             "la_hide": true,
-            "color_backg": "#DAD4CB", // Side menu widget background color
+            "color_backg": "#DDF3F9", // Side menu widget background color DAD4CB
             "color_head": "#C60C30",
             "color_btn": "#F3F3F3",
-            "color_border": "#8B6F4B"
+            "color_border": "#5DC5E4"  // 8B6F4B
             //"css": "",
             //"custom_css": "",
         };

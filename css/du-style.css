@@ -112,6 +112,11 @@ prm-main-menu[menu-type=full] md-card-title md-card-title-text:only-child .md-su
 md-checkbox {  /*  .ng-pristine .ng-untouched .ng-valid .md-primoExplore-theme .ng-empty */
     display: none;
 }
+
+.home-page-image {
+    width: 100%;
+}
+
 /* background
 md-content, md-content.md-primoExplore-theme{
     background-color: #E5E3E1;
