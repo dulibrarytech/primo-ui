@@ -625,6 +625,7 @@ body {
 prm-brief-result-container .list-item-primary-content {
     background-color: #ffffff;
 }
+
 .bar.alert-bar {
     background-color: #FFFCC6;
     height: 40px !important;
@@ -706,15 +707,19 @@ prm-fines-after .md-button {
     font-size: 15px;
 }
 
+/*
 .section-content {
     width: 450px;
 }
+*/
 
+/**/
 .primo-scrollbar {
-    width: 450px;
+    width: 310px;
 }
 
-    /*Main menu overlay screen*/
+
+/*Main menu overlay screen*/
 md-dialog.light-on-dark-dialog {
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid white;

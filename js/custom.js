@@ -5,6 +5,19 @@
 
     var app = angular.module('viewCustom', ['angularLoad']);
 
+    /** Bring back the scopes for basic searches **/
+    app.component('prmSearchBarAfter', {
+        bindings: {parentCtrl: '<'},
+        controller: 'SearchBarAfterController'
+    });
+
+    app.controller('SearchBarAfterController', ['angularLoad', function () {
+        var vm = this;
+        vm.parentCtrl.showTabsAndScopes = true;
+    }]);
+
+    /** END Bring back the scopes for basic searches **/
+
     /*
      Generates a clickable logo
      */
