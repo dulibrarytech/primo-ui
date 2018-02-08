@@ -18,6 +18,16 @@
 
     /** END Bring back the scopes for basic searches **/
 
+    /** Increases default results page shown to 5 pages (50 results) **/
+    app.component('prmExploreMainAfter',{
+        bindings: {parentCtrl: '<'},
+        controller: function($scope){
+            var vm = this;
+            vm.parentCtrl.searchService.cheetah.configurationUtil.searchStateService.resultsBulkSize = 50;
+        }
+    });
+    /** END Increases default results page shown to 5 pages (50 results) **/
+
     /*
      Generates a clickable logo
      */
