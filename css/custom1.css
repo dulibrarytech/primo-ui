@@ -731,8 +731,12 @@ prm-main-menu[menu-type=full] md-card-title md-card-title-text:only-child .md-su
     display: none;
 }
 
-md-checkbox {  /*  .ng-pristine .ng-untouched .ng-valid .md-primoExplore-theme .ng-empty */
-    display: none;
+/*Hide PCI toggle*/
+prm-facet div.sidebar-inner-wrapper > div:nth-of-type(2)
+{
+  display: none;
+}
+aria-label="Expand My Results" {display: none;
 }
 
 .home-page-image {
