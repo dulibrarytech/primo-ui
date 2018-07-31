@@ -691,6 +691,11 @@ prm-fines-after .md-button {
     background-color: #7F202E;
 }
 
+/*Sign-In Standalone Screen*/
+prm-stand-alone-login .layout-fill {
+    background: #4d4d4d;
+}
+
 /* Browzine styles */
 .browzine-icon  {
     margin-right:2px;
