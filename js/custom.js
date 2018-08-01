@@ -284,7 +284,7 @@
                             height: c.imageHeight,
                             textIndent: "-99999px"
                         }), c.tabHandle.css({
-                            display: "block",
+                            display: "none",
                             outline: "none",
                             position: "absolute"
                         }), d.css({"line-height": "1", position: c.positioning});
