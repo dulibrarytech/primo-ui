@@ -618,7 +618,7 @@ md-list.prm-list.prm-linkable-list-items md-list-item > .md-button > .button-con
 /* primary color hook end*/
 /* creates clickable logo along with custom.js */
 body {
-    font-size: 17px;
+    font-size: 15px;
 }
 
 /* search results */
