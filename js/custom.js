@@ -437,4 +437,14 @@
         }, 40);
     }
 
+/*----------below is the code for libchat-----------*/
+var s=document.createElement('script');
+s.id='localScript';
+s.src= 'https://v2.libanswers.com/load_chat.php?hash=4bea9f42f0f8ffb33bad66814d2589ea';
+document.body.appendChild(s);
+app.component('prmLogoAfter', {
+   template: '<div id="libchat_4bea9f42f0f8ffb33bad66814d2589ea"></div>'
+});
+/*---------------libchat code ends here---------------*/
+
 })();
