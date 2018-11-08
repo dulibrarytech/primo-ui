@@ -1,4 +1,4 @@
-/* Compass Custom CSS */
+/* Compass Custom CSS*/
 /* primary color hook */
  .md-button {
      color: #3a3a3a;
@@ -593,16 +593,6 @@ prm-logo .product-logo {
  prm-stand-alone-login prm-icon _md-secondary-container md-icon.md-primoExplore-theme {
 	visibility: hidden;
 	display: none;
-}
-/* Browzine styles */
- .browzine-icon {
-     margin-right:2px;
-}
- .browzine-external-link {
-     width:15px;
-     height:15px;
-     min-width:15px;
-     min-height:15px;
 }
  #facets {
      font-size: 15px;
