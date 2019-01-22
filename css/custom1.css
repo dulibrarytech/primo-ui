@@ -571,9 +571,6 @@ prm-logo .product-logo {
      color: #FFFFFF;
      background-color: #7F202E;
 }
- md-icon[md-svg-icon="primo-ui:chevron-right"] {
-     display: none;
-}
 /*Sign-In Standalone Screen*/
  prm-stand-alone-login .layout-fill {
      background: #4d4d4d;
