@@ -619,6 +619,40 @@ prm-logo .product-logo {
  .home-page-image {
      width: 100%;
 }
+
+
+
+
+ 
+/* Hide Login Lightbox Chevrons */ 
+.login-dialog md-icon {
+    display:none;
+}
+
+/* Other Places to Search */
+#OtherPlacesToSearchContainer {
+    padding-bottom: 1rem;
+    font-weight: 600;
+}
+#OtherPlacesToSearchContainer ol, #OtherPlacesToSearchContainer li {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+/* FOR ALMA: Hide Volume and Year from Request Options */ 
+ul.internalSection li#volumeHoldingID, 
+ul.internalSection li#yearHoldingID, 
+ul.internalSection select#selectVolume, 
+ul.internalSection select#selectYear {
+    display:none !important;
+}
+
+
+
+
+
+
 /* background md-content, md-content.md-primoExplore-theme{
      background-color: #E5E3E1;
 }
