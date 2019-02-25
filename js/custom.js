@@ -3,7 +3,122 @@
     "use strict";
     'use strict';
 
-    var app = angular.module('viewCustom', ['angularLoad']);
+
+
+
+    angular.module('externalSearch', []).value('searchTargets', [
+        {
+            "name": "Search Prospector",
+            "url": "https://encore.coalliance.org/iii/encore/search/C__S",
+            mapping: function(search) {
+                if(Array.isArray(search)) {
+                    var ret = '';
+                    for(var i=0; i<search.length; i++) {
+                    var terms = search[i].split(','); 
+                    ret += ' ' + (terms[2] || '');
+                    }
+                    return ret;
+                }
+                else {
+                    var terms = search.split(',');
+                    return terms[2] || "";
+                }
+            }
+        },   
+        {
+            "name": "Search WorldCat",
+            "url": "https://www.worldcat.org/search?q=",
+            mapping: function(search) {
+                if(Array.isArray(search)) {
+                    var ret = '';
+                    for(var i=0; i<search.length; i++) {
+                    var terms = search[i].split(','); 
+                    ret += ' ' + (terms[2] || '');
+                    }
+                    return ret;
+                }
+                else {
+                    var terms = search.split(',');
+                    return terms[2] || "";
+                }
+            }
+        },   
+        {
+            "name": "Search Google Scholar",
+            "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C6&inst=10364086606605717788&q=",
+            mapping: function(search) {
+                if(Array.isArray(search)) {
+                    var ret = '';
+                    for(var i=0; i<search.length; i++) {
+                    var terms = search[i].split(','); 
+                    ret += ' ' + (terms[2] || '');
+                    }
+                    return ret;
+                }
+                else {
+                    var terms = search.split(',');
+                    return terms[2] || "";
+                }
+            }
+        } 
+    ]).component('prmFacetAfter', {
+        bindings: { parentCtrl: '<' },
+        controller: ['externalSearchService', function (externalSearchService) {
+            externalSearchService.controller = this.parentCtrl;
+            externalSearchService.addExtSearch();
+        }]
+        }).component('prmPageNavMenuAfter', {
+            controller: ['externalSearchService', function (externalSearchService) {
+            if (externalSearchService.controller) externalSearchService.addExtSearch();
+        }]
+        }).component('prmFacetExactAfter', {
+            bindings: { parentCtrl: '<' },
+            template: '\n      <div ng-if="name === \'Other Places to Search\'">\n          <div ng-hide="$ctrl.parentCtrl.facetGroup.facetGroupCollapsed">\n              <div class="section-content animate-max-height-variable">\n                  <div class="md-chips md-chips-wrap">\n                      <div ng-repeat="target in targets" aria-live="polite" class="md-chip animate-opacity-and-scale facet-element-marker-local4">\n                          <div class="md-chip-content layout-row" role="button" tabindex="0">\n                              <strong dir="auto" title="{{ target.name }}">\n                                  <a ng-href="{{ target.url + target.mapping(queries, filters) }}" target="_blank">\n                                  {{ target.name }}</a>\n                              </strong>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n          </div>\n      </div>',
+            controller: ['$scope', '$location', 'searchTargets', function ($scope, $location, searchTargets) {
+            $scope.name = this.parentCtrl.facetGroup.name;
+            $scope.targets = searchTargets;
+            var query = $location.search().query;
+            var filter = $location.search().pfilter;
+            $scope.queries = Array.isArray(query) ? query : query ? [query] : false;
+            $scope.filters = Array.isArray(filter) ? filter : filter ? [filter] : false;
+            }]
+        }).factory('externalSearchService', function () {
+            return {
+            get controller() {
+                return this.prmFacetCtrl || false;
+            },
+            set controller(controller) {
+                this.prmFacetCtrl = controller;
+            },
+            addExtSearch: function addExtSearch() {
+                var xx=this;
+                var checkExist = setInterval(function() {
+  
+                if (xx.prmFacetCtrl.facetService.results[0] && xx.prmFacetCtrl.facetService.results[0].name !="Other Places to Search") {
+                    if (xx.prmFacetCtrl.facetService.results.name !== 'Other Places to Search') {
+                        xx.prmFacetCtrl.facetService.results.unshift({
+                            name: 'Other Places to Search',
+                            displayedType: 'exact',
+                            limitCount: 0,
+                            facetGroupCollapsed: false,
+                            values: undefined
+                        });
+                    }
+                    clearInterval(checkExist);
+                }
+            }, 100);
+
+        }
+    };
+});
+
+
+
+var app = angular.module('viewCustom', ['angularLoad', 'externalSearch']);
+
+
+
+
 
     /** Bring back the scopes for basic searches **/
     app.component('prmSearchBarAfter', {
@@ -18,12 +133,12 @@
 
     /** END Bring back the scopes for basic searches **/
 
-    /** Increases default results page shown to 5 pages (50 results) **/
+/** Increases default results page shown to 5 pages (50 results) **/
     app.component('prmExploreMainAfter',{
         bindings: {parentCtrl: '<'},
         controller: function($scope){
             var vm = this;
-            vm.parentCtrl.searchService.cheetah.configurationUtil.searchStateService.resultsBulkSize = 50;
+            vm.parentCtrl.searchService.cheetah.configurationUtil.searchStateService.resultsBulkSize = 50;   
         }
     });
     /** END Increases default results page shown to 5 pages (50 results) **/
@@ -52,6 +167,7 @@
         template: '<div><a href="https://fines.library.du.edu/login" class="md-button" target="_blank">Pay Fine(s)</a></div>'
     });
 
+   
     /*
      Generates prospector link on "no results found page"
      */
@@ -73,7 +189,7 @@
         bindings: {parentCtrl: '<'},
         controller: 'prmNoSearchResultAfter'
     });
-    
+
 // Begin BrowZine - Primo Integration...
   window.browzine = {
     api: "https://public-api.thirdiron.com/public/v1/libraries/26",
@@ -360,7 +476,6 @@
                 'width': '100%',
                 'height': sideMenuWidget_options.height
             });
-
             sideMenuWidget_load.html($content).show();
         }
     })();
@@ -389,36 +504,35 @@
         }, 40);
     }
 
+//     document.getElementById("searchBar").addEventListener("onblur", function(e){
+//         console.log(e);
+//     });
 
+// window.buildExternalSearch = function() {
+//     var waitingTimer = window.setInterval(function() {
+//         // add Prospector, Google Scholar, and WorldCat
+//         var checkExists = document.getElementById("facets");
+//         if(checkExists != undefined) {
+//             var search_prospector_label = "Prospector";
+//             var prospector_search_url = "https://encore.coalliance.org/iii/encore/search/C__S";
+//             var search_google_scholar_label = "Google Scholar";
+//             var google_scholar_search_url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C6&inst=10364086606605717788&q=";
+//             var search_worldcat_label = "WorldCat";
+//             var worldcat_search_url = "https://www.worldcat.org/search?q=";
+//             var search_string = "";
+//             if(document.getElementById("searchBar").value.length > 0) 
+//                 search_string = document.getElementById("searchBar").value;
+//             else if(document.getElementById("input_freeText0").value.length > 0 && document.getElementById("input_freeText1").value.length > 0 && document.getElementById("input_freeText2").value.length > 0) 
+//                 search_string = document.getElementById("input_freeText0").value + " " + document.getElementById("input_freeText1").value + " " + document.getElementById("input_freeText2").value;
+//                 var newsearchoptions = document.createElement('span');
+//                 newsearchoptions.innerHTML = '<div id="OtherPlacesToSearchContainer"><h2 class="sidebar-title">External Search</h2><ol class="EXLFacetsList EXLFacetsListPreview"><li><a href="'+prospector_search_url+encodeURIComponent(search_string)+'__Orightresult__U?lang=eng&suite=def" title="Search Prospector" target="_blank">'+search_prospector_label+'</a></li><li><a href="'+google_scholar_search_url+encodeURIComponent(search_string)+'" title="Search Google Scholar" target="_blank">'+search_google_scholar_label+'</a></li><li><a href="'+worldcat_search_url+encodeURIComponent(search_string)+'" title="Search WorldCat" target="_blank">'+search_worldcat_label+'</a></li></ol></div>';
+//                 document.getElementById("facets").getElementsByClassName("sidebar-section")[0].prepend(newsearchoptions);
+//                 clearInterval(waitingTimer);
+//         }
+//     }, 2000);
+// }
 
-
-
-    // add Prospector, Google Scholar, and WorldCat searches
-    var waitingTimer = window.setInterval(function() {
-        var checkExists = document.getElementById("facets");
-        if(checkExists != undefined) {
-            var search_prospector_label = "Search Prospector";
-            var prospector_search_url = "https://encore.coalliance.org/iii/encore/search/C__S";
-            var search_google_scholar_label = "Search Google Scholar";
-            var google_scholar_search_url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C6&inst=10364086606605717788&q=";
-            var search_worldcat_label = "Search WorldCat";
-            var worldcat_search_url = "https://www.worldcat.org/search?q=";
-            var search_string = "";
-            if(document.getElementById("searchBar").value.length > 0) 
-                search_string = document.getElementById("searchBar").value;
-            else if(document.getElementById("input_freeText0").value.length > 0 && document.getElementById("input_freeText1").value.length > 0 && document.getElementById("input_freeText2").value.length > 0) 
-                search_string = document.getElementById("input_freeText0").value + " " + document.getElementById("input_freeText1").value + " " + document.getElementById("input_freeText2").value;
-                var newsearchoptions = document.createElement('span');
-                newsearchoptions.innerHTML = '<div id="OtherPlacesToSearchContainer"><h2 class="sidebar-title">Other Places to Search</h2><ol class="EXLFacetsList EXLFacetsListPreview"><li><a href="'+prospector_search_url+encodeURIComponent(search_string)+'__Orightresult__U?lang=eng&suite=def" title="Search Prospector">'+search_prospector_label+'</a></li><li><a href="'+google_scholar_search_url+encodeURIComponent(search_string)+'" title="Search Google Scholar">'+search_google_scholar_label+'</a></li><li><a href="'+worldcat_search_url+encodeURIComponent(search_string)+'" title="Search WorldCat">'+search_worldcat_label+'</a></li></ol></div>';
-                document.getElementById("facets").getElementsByClassName("sidebar-section")[0].prepend(newsearchoptions);
-                console.log(waitingTimer);
-                clearInterval(waitingTimer);
-                console.log(waitingTimer);
-        }
-    }, 2000);
-
-
-
+// window.buildExternalSearch();
 
 
 /*----------below is the code for libchat-----------*/
