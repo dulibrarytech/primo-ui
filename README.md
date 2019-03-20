@@ -2,6 +2,17 @@
 # The Primo New UI Customization Workflow Development Environment
 
 
+
+Must be packed for deploy with a command such as: zip -r 01UODE_MAIN.zip 01UODE_MAIN -x "*.DS_Store"
+
+File Structure MUST be under root named: 01UODE_MAIN
+
+
+
+
+
+
+
 ##Package documentation
 
 The development package allows you to configure :
