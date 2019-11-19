@@ -1,6 +1,3 @@
-// google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
-require('primo-explore-google-analytics');
-
 (function () {
 
     "use strict";
@@ -63,7 +60,25 @@ require('primo-explore-google-analytics');
                     return terms[2] || "";
                 }
             }
-        } 
+        },
+        {
+            "name": "Search Library Website",
+            "url": "https://library.du.edu/#?cludoquery=",
+            mapping: function mapping(search) {
+                if (Array.isArray(search)) {
+                    var ret = '';
+                    for (var i = 0; i < search.length; i++) {
+                        var terms = search[i].split(',');
+                        ret += ' ' + (terms[2] || '');
+                    }
+                    return ret;
+                } else {
+                    var terms = search.split(',');
+                    return terms[2] || "";
+                }
+            
+            }
+        }
     ]).component('prmFacetAfter', {
         bindings: { parentCtrl: '<' },
         controller: ['externalSearchService', function (externalSearchService) {
@@ -115,95 +130,110 @@ require('primo-explore-google-analytics');
     };
 });
 
-
 // google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
 var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'googleAnalytics']);
 
+// google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
+app.run(runBlock);
 
-  // google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
-      app.run(runBlock);
+// google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
+runBlock.$inject = ['gaInjectionService'];
+function runBlock(gaInjectionService) {
+    // other potential run operations...
+    gaInjectionService.injectGACode();
+}
 
-      runBlock.$inject = ['gaInjectionService'];
-      function runBlock(gaInjectionService) {
-        // other potential run operations...
-        gaInjectionService.injectGACode();
-      }
-    
+// google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
+app.constant('googleAnalyticsConfig', {
+    trackingId: 'UA-10614684-14',
+    // use null to specify an external script shouldn't be loaded
+    externalScriptURL: null,
+    // copy from script snippet from Google if you're running legacy Google Analytics
+    inlineScript: null,
+    target: 'head'
+});
+
+// google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
+// TEST - Custom Google Analytics code
+// app.constant('googleAnalyticsConfig', {
+//   trackingId: 'UA-10614684-14',
+//   // use null to specify an external script shouldn't be loaded
+//   externalScriptURL: null,
+//   // copy from script snippet from Google if you're running legacy Google Analytics
+//   inlineScript: 
+//     var _gaq = _gaq || [];
+//     _gaq.push(['_setAccount', 'AB-123456789']);
+//     _gaq.push(['_trackPageview']);
+
+//     (function() {
+//       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+//       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+//     })();
+//   `,
+//   target: 'head',
+// })
+
+/** Bring back the scopes for basic searches **/
+app.component('prmSearchBarAfter', {
+    bindings: {parentCtrl: '<'},
+    controller: 'SearchBarAfterController'
+});
+
+app.controller('SearchBarAfterController', ['angularLoad', function () {
+    var vm = this;
+    vm.parentCtrl.showTabsAndScopes = true;
+}]);
+
+/** END Bring back the scopes for basic searches **/
 
 
-    // google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
-      app.constant('googleAnalyticsConfig', {
-      trackingId: 'UA-10614684-14',
-      // use null to specify an external script shouldn't be loaded
-      externalScriptURL: null,
-      // copy from script snippet from Google if you're running legacy Google Analytics
-      inlineScript: null,
-      target: 'head',
-    })
+/*
+ Generates a clickable logo
+ */
+app.controller('prmLogoAfterController', [function () {
+    var vm = this;
+    vm.getIconLink = getIconLink;
+    function getIconLink() {
+        return vm.parentCtrl.iconLink;
+    }
+}]);
+
+app.component('prmLogoAfter', {
+    bindings: {parentCtrl: '<'},
+    controller: 'prmLogoAfterController',
+    template: '<div class="product-logo product-logo-local" layout="row" id="banner" tabindex="0"  role="banner">' + '<a href="/primo-explore/search?vid=01UODE_MAIN&lang=en_US&sortby=rank"><img class="logo-image" alt="{{::(&apos;nui.header.LogoAlt&apos; | translate)}}" ng-src="{{$ctrl.getIconLink()}}"/></a></div>'
+});
+
+/*
+ Generates a pay fine(s) button
+ */
+app.component('prmFinesAfter', {
+    template: '<div><a href="https://fines.library.du.edu/login" class="md-button" target="_blank">Pay Fine(s)</a></div>'
+});
 
 
+/*
+ Generates prospector link on "no results found page"
+ */
+app.controller('prmNoSearchResultAfter', [function () {
+    var vm = this;
+    var searchTerm = vm.parentCtrl.term;
 
+    function appendProspectorLink() {
 
-    /** Bring back the scopes for basic searches **/
-    app.component('prmSearchBarAfter', {
-        bindings: {parentCtrl: '<'},
-        controller: 'SearchBarAfterController'
-    });
+        angular.element(document.querySelector('md-card-content ul')).append(
+            '<li>Try your search in <a href="http://encore.coalliance.org/iii/encore/search/C__S' + encodeURIComponent(searchTerm) + '__Orightresult__U?lang=eng&suite=def" target="_blank">Prospector</a></li>'
+        );
+    }
 
-    app.controller('SearchBarAfterController', ['angularLoad', function () {
-        var vm = this;
-        vm.parentCtrl.showTabsAndScopes = true;
-    }]);
+    appendProspectorLink();
+}]);
 
-    /** END Bring back the scopes for basic searches **/
-
-
-    /*
-     Generates a clickable logo
-     */
-    app.controller('prmLogoAfterController', [function () {
-        var vm = this;
-        vm.getIconLink = getIconLink;
-        function getIconLink() {
-            return vm.parentCtrl.iconLink;
-        }
-    }]);
-
-    app.component('prmLogoAfter', {
-        bindings: {parentCtrl: '<'},
-        controller: 'prmLogoAfterController',
-        template: '<div class="product-logo product-logo-local" layout="row" id="banner" tabindex="0"  role="banner">' + '<a href="/primo-explore/search?vid=01UODE_MAIN&lang=en_US&sortby=rank"><img class="logo-image" alt="{{::(&apos;nui.header.LogoAlt&apos; | translate)}}" ng-src="{{$ctrl.getIconLink()}}"/></a></div>'
-    });
-
-    /*
-     Generates a pay fine(s) button
-     */
-    app.component('prmFinesAfter', {
-        template: '<div><a href="https://fines.library.du.edu/login" class="md-button" target="_blank">Pay Fine(s)</a></div>'
-    });
-
-   
-    /*
-     Generates prospector link on "no results found page"
-     */
-    app.controller('prmNoSearchResultAfter', [function () {
-        var vm = this;
-        var searchTerm = vm.parentCtrl.term;
-
-        function appendProspectorLink() {
-
-            angular.element(document.querySelector('md-card-content ul')).append(
-                '<li>Try your search in <a href="http://encore.coalliance.org/iii/encore/search/C__S' + encodeURIComponent(searchTerm) + '__Orightresult__U?lang=eng&suite=def" target="_blank">Prospector</a></li>'
-            );
-        }
-
-        appendProspectorLink();
-    }]);
-
-    app.component('prmNoSearchResultAfter', {
-        bindings: {parentCtrl: '<'},
-        controller: 'prmNoSearchResultAfter'
-    });
+app.component('prmNoSearchResultAfter', {
+    bindings: {parentCtrl: '<'},
+    controller: 'prmNoSearchResultAfter'
+});
 
 // Begin BrowZine - Primo Integration...
   window.browzine = {
@@ -234,7 +264,7 @@ var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'google
 /*
  Generates side menu widget
  */
-(function () {
+(function (app) {
 
     "use strict";
     'use strict';
@@ -563,18 +593,3 @@ app.component('prmLogoAfter', {
 /*---------------libchat code ends here---------------*/
 
 })();
-
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-10614684-14"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-10614684-14');
-</script>
-
-
-<!-- End Google Analytics -->
-
