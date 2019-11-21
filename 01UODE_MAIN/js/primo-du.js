@@ -143,36 +143,22 @@ function runBlock(gaInjectionService) {
     gaInjectionService.injectGACode();
 }
 
-// google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
+// google analytics addon 2019-11 https://github.com/NYULibraries/primo-explore-google-analytics
 app.constant('googleAnalyticsConfig', {
-    trackingId: 'UA-10614684-14',
-    // use null to specify an external script shouldn't be loaded
-    externalScriptURL: null,
-    // copy from script snippet from Google if you're running legacy Google Analytics
-    inlineScript: null,
-    target: 'head'
-});
-
-// google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
-// TEST - Custom Google Analytics code
-// app.constant('googleAnalyticsConfig', {
-//   trackingId: 'UA-10614684-14',
-//   // use null to specify an external script shouldn't be loaded
-//   externalScriptURL: null,
-//   // copy from script snippet from Google if you're running legacy Google Analytics
-//   inlineScript: 
-//     var _gaq = _gaq || [];
-//     _gaq.push(['_setAccount', 'AB-123456789']);
-//     _gaq.push(['_trackPageview']);
-
-//     (function() {
-//       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-//       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-//       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-//     })();
-//   `,
-//   target: 'head',
-// })
+  trackingId: 'UA-10614684-14',
+  // use null to specify an external script shouldn't be loaded
+  externalScriptURL: null,
+  // copy from script snippet from Google if you're running legacy Google Analytics
+  inlineScript: `
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga'),
+     ga('create', 'UA-10614684-14', 'auto');
+     ga('send', 'pageview');
+  `,
+  target: 'head',
+})
 
 /** Bring back the scopes for basic searches **/
 app.component('prmSearchBarAfter', {
@@ -186,7 +172,6 @@ app.controller('SearchBarAfterController', ['angularLoad', function () {
 }]);
 
 /** END Bring back the scopes for basic searches **/
-
 
 /*
  Generates a clickable logo

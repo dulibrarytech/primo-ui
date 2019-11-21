@@ -1,6 +1,5 @@
     /*
-     * Begin "primo-explore-google-analytics" code block (JR 11-2019)
-     * google analytics addon 2019-08 https://github.com/NYULibraries/primo-explore-google-analytics
+     * https://github.com/NYULibraries/primo-explore-google-analytics
      */
     !function (t, e) {
         "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) && "object" == (typeof module === "undefined" ? "undefined" : _typeof(module)) ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? exports.primoExploreGoogleAnalytics = e() : t.primoExploreGoogleAnalytics = e();
