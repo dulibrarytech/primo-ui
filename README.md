@@ -59,15 +59,19 @@ To modify Primo view files:
 
 5. Once the updates are complete and everything appears correct in the primo-explore-devenv browser (localhost:8003/primo-explore/?vid=[view]), build the view package using the command "gulp create-package" *Linux - use sudo
 
-6. The built package (.zip file) will be located in the folder "primo-explore-devenv/packages/".  Upload this package to Primo Back Office (Deploy Utilities -> UI Customization Package Manager) and deploy it
+6. The built package (.zip file) will be located in the folder "primo-explore-devenv/packages/".  Upload this package to Primo Sandbox Back Office (Deploy Utilities -> UI Customization Package Manager) and deploy it
 
+edit
+7. Upload to production after sandbox works, confirm with stakeholders to go live
 
+Additional notes.
 
+1-NYU libray code
+2- custom joseph
+primo-du.js - DU specific customizations
+in the future, add customizations to primo-du, separate when: code is really big, or not our code
 
-
-
-
-
+upload zip to sandbox and test
 
 
 
